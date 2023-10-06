@@ -11,6 +11,23 @@ const Header = (props) => {
 
     console.log(typeof(props.darkMode))
 
+    const currentLocation = {
+        latitude: 0,
+        longitude: 0
+    }
+
+    function handleGetCurrentLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition((position) => {
+                currentLocation.latitude = position.coords.latitude;
+                currentLocation.longitude = position.coords.longitude;
+                console.log(currentLocation)
+            })
+        } else {
+            console.log('Geolocation is not supported by this browser.')
+        }
+    }
+    
     const MaterialUISwitch = styled(Switch)(({ theme }) => ({
         width: 62,
         height: 34,
@@ -59,7 +76,7 @@ const Header = (props) => {
     }));
 
     const iconStyle = {
-        color: '#292929',
+        color: darkMode ? '#ffffff99' : '#292929',
         fontSize: '.85rem',
     }
     return (
@@ -75,7 +92,7 @@ const Header = (props) => {
                     <input className={darkMode ? 'search-input dark-mode' : 'search-input'} type='search' placeholder='Search for your preferred city...' />
                     <FaSearch className='search-icon' style={iconStyle} />
                 </div>
-                <button className='current-location'><img src={currentLocationIcon}/> Current Location</button>
+                <button onClick={handleGetCurrentLocation} className='current-location'><img src={currentLocationIcon}/> Current Location</button>
             </nav>
         </header>
     )
