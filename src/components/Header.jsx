@@ -9,7 +9,7 @@ import Switch from '@mui/material/Switch';
 const Header = (props) => {
     const {darkMode, handleDarkMode} = props;
 
-    console.log(darkMode)
+    console.log(typeof(props.darkMode))
 
     const MaterialUISwitch = styled(Switch)(({ theme }) => ({
         width: 62,
@@ -67,12 +67,12 @@ const Header = (props) => {
             <nav className='nav-bar'>
                 <FormControlLabel
                     control={<MaterialUISwitch sx={{ m: 1 }} />}
-                    checked={darkMode}
+                    checked={props.darkMode}
                     onClick={() => handleDarkMode()}
                 />
                 <div className="search-container">
                     <label className='visually-hidden' htmlFor="search">Search</label>
-                    <input className={darkMode ? 'search-input dark-mode' : 'search-input'} type="text" placeholder='Search for your preferred city...' />
+                    <input className={darkMode ? 'search-input dark-mode' : 'search-input'} type='search' placeholder='Search for your preferred city...' />
                     <FaSearch className='search-icon' style={iconStyle} />
                 </div>
                 <button className='current-location'><img src={currentLocationIcon}/> Current Location</button>
