@@ -1,5 +1,5 @@
 import React from 'react'
-import currentLocationIcon from '../assets/current-location-icon.png'
+import currentLocationIcon from '../assets/images/current-location-icon.png'
 import { FaSearch } from 'react-icons/fa'
 
 import { styled } from '@mui/material/styles';

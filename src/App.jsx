@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Header from './components/Header'
 import TimeDate from './components/TimeDate';
+import CurrentWeather from './components/CurrentWeather';
 
 const App = () => {
   const [darkMode, setDarkMode] = useState(JSON.parse(localStorage.getItem('darkMode')) || false);
@@ -18,9 +19,15 @@ const App = () => {
           darkMode={darkMode}
           handleDarkMode={handleDarkMode}
         />
-        <TimeDate
-          darkMode={darkMode}
-        />
+        <main>
+          {/* <TimeDate
+            darkMode={darkMode}
+          /> */}
+          <CurrentWeather
+            darkMode={darkMode}
+          />
+
+        </main>
       </div>
     </div>
   )

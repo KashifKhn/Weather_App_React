@@ -118,9 +118,12 @@ body {
     padding: 0 1rem;
 }
 
+/* ************** App ****************** */
+
 .app-container {
     display: flex;
     flex-direction: column;
+    /* align-items: center; */
     gap: 1rem;
 }
 
@@ -137,6 +140,8 @@ body {
     background: rgb(68, 68, 68);
     background: linear-gradient(110deg, rgba(68, 68, 68, 0.97) 31%, rgba(55, 54, 54, 1) 57%);
 }
+
+/* ******************* Header ***************** */
 
 .header {
     margin-top: 1rem;
@@ -224,9 +229,9 @@ body {
 }
 
 .time-container {
-    max-width: 450px;
+    max-width: 31rem;
     width: 100%;
-    height: 330px;
+    height: 20rem;
     background: var(--clr-light-bg);
     border-radius: 20px;
     box-shadow: var(--shadow);
@@ -236,6 +241,8 @@ body {
     justify-content: space-around;
     color: var(--clr-text-light);
     text-align: center;
+    padding-block: 1rem;
+    padding-inline: 4rem;
 }
 
 .time-container.dark-mode {
@@ -263,3 +270,27 @@ body {
     word-spacing: .25rem;
 }
 
+
+/* ******************* Current Weather ***************** */
+
+.current-weather-container {
+    max-width: 50rem;
+    width: 100%;
+    height: 20rem;
+    background: var(--clr-light-bg);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    color: var(--clr-text-light);
+    text-align: center;
+    padding-block: 1rem;
+    padding-inline: 4rem;
+}
+
+.current-weather-container.dark-mode {
+    background: var(--clr-dark-bg);
+    color: var(--clr-txt-dark);
+}
