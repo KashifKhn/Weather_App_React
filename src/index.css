@@ -128,8 +128,8 @@ body {
 }
 
 .App {
-    background: rgb(255,255,255);
-    background: linear-gradient(93deg, rgba(255,255,255,1) 13%, rgba(134,134,134,1) 75%, rgba(41,41,41,1) 99%);
+    background: rgb(255, 255, 255);
+    background: linear-gradient(93deg, rgba(255, 255, 255, 1) 13%, rgba(134, 134, 134, 1) 75%, rgba(41, 41, 41, 1) 99%);
     min-height: 100vh;
     width: 100%;
     overflow: hidden;
@@ -139,6 +139,12 @@ body {
 .App.dark-mode {
     background: rgb(68, 68, 68);
     background: linear-gradient(110deg, rgba(68, 68, 68, 0.97) 31%, rgba(55, 54, 54, 1) 57%);
+}
+
+.main {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 1rem;
 }
 
 /* ******************* Header ***************** */
@@ -173,7 +179,7 @@ body {
     border-radius: 2.5rem;
     font-size: 1rem;
     font-weight: 400;
-    color: var( --clr-text-light);
+    color: var(--clr-text-light);
     outline: none;
     box-shadow: 0px 4px 40px 0px rgba(0, 0, 0, 0.25);
     text-indent: 2rem;
@@ -181,7 +187,7 @@ body {
 
 .search-input::placeholder {
     font-size: .85rem;
-    color: var( --clr-text-light)
+    color: var(--clr-text-light)
 }
 
 .search-input.dark-mode {
@@ -270,7 +276,6 @@ body {
     word-spacing: .25rem;
 }
 
-
 /* ******************* Current Weather ***************** */
 
 .current-weather-container {
@@ -280,12 +285,7 @@ body {
     background: var(--clr-light-bg);
     border-radius: 20px;
     box-shadow: var(--shadow);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
     color: var(--clr-text-light);
-    text-align: center;
     padding-block: 1rem;
     padding-inline: 4rem;
 }
@@ -293,4 +293,118 @@ body {
 .current-weather-container.dark-mode {
     background: var(--clr-dark-bg);
     color: var(--clr-txt-dark);
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-inline: auto;
+}
+
+.grid-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+
+}
+
+.temp-deg h3 {
+    background: linear-gradient(80deg, #292929 -2.93%, rgba(255, 255, 255, 0.00) 212.44%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 5rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.current-weather-container.dark-mode .temp-deg h3 {
+    background: linear-gradient(84deg, #FFF -16.56%, rgba(255, 255, 255, 0.00) 118.43%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.sun-time-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 1rem;
+    gap: 1rem;
+}
+
+.sun-rise,
+.sun-set {
+    display: flex;
+    gap: 1rem;
+}
+
+.current-weather-container .sun-rise img,
+.current-weather-container .sun-set img {
+    width: 3rem;
+    height: 3rem;
+}
+
+.current-weather-container .sun-rise p,
+.current-weather-container .sun-set p {
+    font-size: 1rem;
+}
+
+.current-weather-container .sun-time-txt {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.weather-icon img {
+    width: 16rem;
+    height: auto;
+}
+
+.weather-icon h4 {
+    text-align: center;
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.extra-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.extra-info-div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.extra-info-item {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    gap: .25rem;
+}
+
+.extra-info-item .extra-info-qun {
+    text-align: center;
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.extra-info-item .extra-info-name {
+    text-align: center;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
 }

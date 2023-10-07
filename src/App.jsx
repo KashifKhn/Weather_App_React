@@ -19,14 +19,13 @@ const App = () => {
           darkMode={darkMode}
           handleDarkMode={handleDarkMode}
         />
-        <main>
-          {/* <TimeDate
+        <main className='main'>
+          <TimeDate
             darkMode={darkMode}
-          /> */}
+          />
           <CurrentWeather
             darkMode={darkMode}
           />
-
         </main>
       </div>
     </div>
