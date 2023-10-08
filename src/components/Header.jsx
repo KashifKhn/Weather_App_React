@@ -1,33 +1,50 @@
 import React from 'react'
 import currentLocationIcon from '../assets/images/current-location-icon.png'
 import { FaSearch } from 'react-icons/fa'
-
 import { styled } from '@mui/material/styles';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
+import { AsyncPaginate } from 'react-select-async-paginate';
+import { fetchCity } from '../../api';
 
 const Header = (props) => {
-    const {darkMode, handleDarkMode} = props;
 
-    console.log(typeof(props.darkMode))
+    const [search, setSearch] = React.useState(null)
+    const { darkMode, handleDarkMode } = props;
 
     const currentLocation = {
-        latitude: 0,
-        longitude: 0
+        lat: 0,
+        long: 0
     }
 
     function handleGetCurrentLocation() {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition((position) => {
-                currentLocation.latitude = position.coords.latitude;
-                currentLocation.longitude = position.coords.longitude;
+                currentLocation.lat = position.coords.latitude;
+                currentLocation.long = position.coords.longitude;
                 console.log(currentLocation)
             })
         } else {
             console.log('Geolocation is not supported by this browser.')
         }
     }
-    
+
+    const handleOnChangeInput = (searchData) => {
+        setSearch(searchData)
+        props.onSearchChange(searchData)
+    }
+
+    const loadOptions = async (inputValue) => {
+        const data = await fetchCity(inputValue);
+        return {
+            options: data.data.map((city) => ({
+                value: `${city.latitude} ${city.longitude}`,
+                label: `${city.name}, ${city.countryCode}`,
+            }))
+        }
+    }
+
+
     const MaterialUISwitch = styled(Switch)(({ theme }) => ({
         width: 62,
         height: 34,
@@ -78,7 +95,26 @@ const Header = (props) => {
     const iconStyle = {
         color: darkMode ? '#ffffff99' : '#292929',
         fontSize: '.85rem',
+
     }
+
+    const inputStyle = {
+        control: (provided, state) => ({
+            ...provided,
+            border: 'none',
+            background: "transparent",
+            paddingInline: '1rem',
+            outline: 'none',
+            boxShadow: 'none',
+        }),
+        option: (provided, state) => ({
+            ...provided,
+            backgroundColor: state.isFocused ? 'transparent' : null,
+            outline: state.isFocused ? 'none' : null,
+            border: state.isFocused ? 'none' : null,
+        }),
+    }
+
     return (
         <header className='header'>
             <nav className='nav-bar'>
@@ -89,10 +125,18 @@ const Header = (props) => {
                 />
                 <div className="search-container">
                     <label className='visually-hidden' htmlFor="search">Search</label>
-                    <input className={darkMode ? 'search-input dark-mode' : 'search-input'} type='search' placeholder='Search for your preferred city...' />
+                    <AsyncPaginate
+                        styles={inputStyle}
+                        className={darkMode ? 'search-input dark-mode' : 'search-input'}
+                        debounceTimeout={600}
+                        placeholder='Search for your preferred city...'
+                        value={search}
+                        onChange={handleOnChangeInput}
+                        loadOptions={loadOptions}
+                    />
                     <FaSearch className='search-icon' style={iconStyle} />
                 </div>
-                <button onClick={handleGetCurrentLocation} className='current-location'><img src={currentLocationIcon}/> Current Location</button>
+                <button onClick={handleGetCurrentLocation} className='current-location'><img src={currentLocationIcon} /> Current Location</button>
             </nav>
         </header>
     )

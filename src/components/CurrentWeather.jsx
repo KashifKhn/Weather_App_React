@@ -15,27 +15,39 @@ import humidityIconLight from '../assets/images/humidity-icon-light.png'
 import pressureIconLight from '../assets/images/pressure-icon-light.png'
 
 const CurrentWeather = (props) => {
+  const { currentWeatherData } = props;
+
+  function convertTimestamp(timestamp) {
+    const date = new Date(timestamp * 1000);
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+    const formattedHours = hours < 10 ? `0${hours}` : hours;
+    const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
+    return `${formattedHours}:${formattedMinutes}`;
+  }
+console.log(currentWeatherData)
+
   return (
     <div className={props.darkMode ? 'current-weather-container dark-mode' : 'current-weather-container'}>
       <div className="grid-container">
         <div className="grid-item">
           <div className="temp-deg">
-            <h3>24°C </h3>
-            <p className="fell-like">Feels like: <span>22°C</span></p>
+            <h3>{Math.round(currentWeatherData.main.temp)}°C</h3>
+            <p className="fell-like">Feels like: <span>{Math.round(currentWeatherData.main.feels_like)}°C</span></p>
           </div>
           <div className="sun-time-container">
             <div className="sun-rise">
               <img src={props.darkMode ? sunRiseIconLight : sunRiseIconDark} alt="" />
               <div>
                 <p className='sun-time-txt'>Sun Rise</p>
-                <p>06:00</p>
+                <p>{convertTimestamp(currentWeatherData.sys.sunrise)}</p>
               </div>
             </div>
             <div className="sun-set">
               <img src={props.darkMode ? sunSetIconLight : sunSetIconDark} alt="" />
               <div>
                 <p className='sun-time-txt'>Sun Set</p>
-                <p>06:00</p>
+                <p>{convertTimestamp(currentWeatherData.sys.sunset)}</p>
               </div>
             </div>
           </div>
@@ -60,7 +72,7 @@ const CurrentWeather = (props) => {
           <div className="extra-info-div">
             <div className="extra-info-item">
               <div className="extra-info-item">
-                <img src={props.darkMode ?pressureIconLight : pressureIconDark} alt="" />
+                <img src={props.darkMode ? pressureIconLight : pressureIconDark} alt="" />
                 <p className='extra-info-qun'>997hpa</p>
                 <p className='extra-info-name'>Pressure</p>
               </div>

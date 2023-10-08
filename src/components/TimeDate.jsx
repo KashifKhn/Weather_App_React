@@ -15,24 +15,25 @@ const TimeDate = (props) => {
       };
     }, []);
   
-    const formattedDate = currentDateTime.toLocaleDateString(undefined, {
-      weekday: 'long',
-      day: 'numeric',
-      month: 'long',
-    });
-  
-    const formattedTime = currentDateTime.toLocaleTimeString(undefined, {
-      hour: '2-digit',
-      minute: '2-digit',
-      hour12: false,
-    });
+    function getCurrentTime(timezoneOffset) {
+      const currentTime = new Date();
+      const timezoneOffsetMs = timezoneOffset * 60000; 
+      const adjustedTime = new Date(currentTime.getTime() + timezoneOffsetMs);     
+      const hours = adjustedTime.getUTCHours();
+      const minutes = adjustedTime.getUTCMinutes();
+      
+      const formattedHours = hours < 10 ? `0${hours}` : hours;
+      const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
+      
+      return `${formattedHours}:${formattedMinutes}`;
+    }
   
     return (
         <div className={props.darkMode ? 'time-container dark-mode' : 'time-container'}>
-            <h2 className="location">Swat Kpk</h2>
+            <h2 className="location">{props.location.city.toUpperCase()} {props.location.tag.toUpperCase()}</h2>
             <div className="date-time">
-                <h2 className='time'>{formattedTime}</h2>
-                <p className='date'>{formattedDate}</p>
+                <h2 className='time'>{getCurrentTime(props.currentWeatherData.timezone)}</h2>
+                <p className='date'>{}</p>
             </div>
         </div>
     )
