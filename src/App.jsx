@@ -6,14 +6,30 @@ import { fetchCurrentWeather } from './api';
 
 const App = () => {
   const [darkMode, setDarkMode] = useState(JSON.parse(localStorage.getItem('darkMode')) || false);
-
-  const [location, setLocation] = useState({lat: 0, lon: 0 });
+  const [location, setLocation] = useState(null);
+  useEffect(() => {
+    handleGetCurrentLocation()
+  }, []);
   const [currentWeatherData, setCurrentWeatherData] = useState(null);
 
   const handleDarkMode = () => {
     setDarkMode(oldDarkMode => !oldDarkMode);
     localStorage.setItem('darkMode', !darkMode);
   };
+
+  function handleGetCurrentLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((position) => {
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
+            setLocation({lat, lon})
+        })
+    } else {
+        alert('Geolocation is not supported by this browser.')
+    }
+
+
+}
 
   useEffect(() => {
     const callAPI = async () => {
@@ -41,6 +57,7 @@ const App = () => {
           darkMode={darkMode}
           handleDarkMode={handleDarkMode}
           onSearchChange={HandleOnSearchChange}
+          handleGetCurrentLocation={handleGetCurrentLocation}
         />
         <main className='main'>
           {currentWeatherData && <TimeDate

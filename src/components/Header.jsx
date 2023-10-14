@@ -11,22 +11,9 @@ const Header = (props) => {
 
     const [search, setSearch] = React.useState(null)
     const { darkMode, handleDarkMode } = props;
+    console.log("Search: ", search)
 
-    const currentLocation = {
-        lat: 0,
-        long: 0
-    }
 
-    function handleGetCurrentLocation() {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition((position) => {
-                currentLocation.lat = position.coords.latitude;
-                currentLocation.long = position.coords.longitude;
-            })
-        } else {
-            alert('Geolocation is not supported by this browser.')
-        }
-    }
 
     const handleOnChangeInput = (searchData) => {
         setSearch(searchData)
@@ -104,12 +91,15 @@ const Header = (props) => {
             paddingInline: '1rem',
             outline: 'none',
             boxShadow: 'none',
+            color: darkMode ? '#292929' : '#ffffff99',
         }),
         option: (provided, state) => ({
             ...provided,
             backgroundColor: state.isFocused ? 'transparent' : null,
             outline: state.isFocused ? 'none' : null,
             border: state.isFocused ? 'none' : null,
+            color: darkMode ? '#292929' : '#ffffff99',
+
         }),
     }
 
@@ -134,7 +124,7 @@ const Header = (props) => {
                     />
                     <FaSearch className='search-icon' style={iconStyle} />
                 </div>
-                <button onClick={handleGetCurrentLocation} className='current-location'><img src={currentLocationIcon} /> Current Location</button>
+                <button onClick={props.handleGetCurrentLocation} className='current-location'><img src={currentLocationIcon} /> Current Location</button>
             </nav>
         </header>
     )
