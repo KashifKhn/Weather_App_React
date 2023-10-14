@@ -1,7 +1,6 @@
 import React from 'react'
 import sunRiseIconDark from '../assets/images/sunrise-icon-dark.png'
 import sunSetIconDark from '../assets/images/sunset-icon-dark.png'
-import sunIcon from '../assets/images/sun-icon.png'
 import windIconDark from '../assets/images/wind-icon-dark.png'
 import uvIconDark from '../assets/images/uv-icon-dark.png'
 import humidityIconDark from '../assets/images/humidity-icon-dark.png'
@@ -14,6 +13,8 @@ import uvIconLight from '../assets/images/uv-icon-light.png'
 import humidityIconLight from '../assets/images/humidity-icon-light.png'
 import pressureIconLight from '../assets/images/pressure-icon-light.png'
 
+import { conditionIcon } from '../icon'
+
 const CurrentWeather = (props) => {
   const { currentWeatherData } = props;
 
@@ -25,7 +26,6 @@ const CurrentWeather = (props) => {
     const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
     return `${formattedHours}:${formattedMinutes}`;
   }
-console.log(currentWeatherData)
 
   return (
     <div className={props.darkMode ? 'current-weather-container dark-mode' : 'current-weather-container'}>
@@ -53,19 +53,19 @@ console.log(currentWeatherData)
           </div>
         </div>
         <div className="grid-item weather-icon">
-          <img src={sunIcon} alt="" />
-          <h4>Sunny</h4>
+          <img src={conditionIcon(currentWeatherData.weather[0].icon)} alt="" />
+          <h4>{currentWeatherData.weather[0].main}</h4>
         </div>
         <div className="grid-item extra-info">
           <div className="extra-info-div">
             <div className="extra-info-item">
               <img src={props.darkMode ? humidityIconLight : humidityIconDark} alt="" />
-              <p className='extra-info-qun'>41%</p>
+              <p className='extra-info-qun'>{currentWeatherData.main.humidity}%</p>
               <p className='extra-info-name'>Humidity</p>
             </div>
             <div className="extra-info-item">
               <img src={props.darkMode ? windIconLight : windIconDark} alt="" />
-              <p className='extra-info-qun'>2km/h</p>
+              <p className='extra-info-qun'>{currentWeatherData.wind.speed}km/h</p>
               <p className='extra-info-name'>Wind Speed</p>
             </div>
           </div>
@@ -73,7 +73,7 @@ console.log(currentWeatherData)
             <div className="extra-info-item">
               <div className="extra-info-item">
                 <img src={props.darkMode ? pressureIconLight : pressureIconDark} alt="" />
-                <p className='extra-info-qun'>997hpa</p>
+                <p className='extra-info-qun'>{currentWeatherData.main.pressure}hpa</p>
                 <p className='extra-info-name'>Pressure</p>
               </div>
             </div>

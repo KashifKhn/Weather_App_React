@@ -5,7 +5,7 @@ import { styled } from '@mui/material/styles';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 import { AsyncPaginate } from 'react-select-async-paginate';
-import { fetchCity } from '../../api';
+import { fetchCity } from '../api';
 
 const Header = (props) => {
 
@@ -22,10 +22,9 @@ const Header = (props) => {
             navigator.geolocation.getCurrentPosition((position) => {
                 currentLocation.lat = position.coords.latitude;
                 currentLocation.long = position.coords.longitude;
-                console.log(currentLocation)
             })
         } else {
-            console.log('Geolocation is not supported by this browser.')
+            alert('Geolocation is not supported by this browser.')
         }
     }
 
@@ -43,7 +42,6 @@ const Header = (props) => {
             }))
         }
     }
-
 
     const MaterialUISwitch = styled(Switch)(({ theme }) => ({
         width: 62,
