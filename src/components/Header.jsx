@@ -12,9 +12,6 @@ const Header = (props) => {
     const [search, setSearch] = useState(null)
     const [error, setError] = useState(null)
     const { darkMode, handleDarkMode } = props;
-    console.log("Search: ", search)
-
-
 
     const handleOnChangeInput = (searchData) => {
         setSearch(searchData)

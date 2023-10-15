@@ -145,6 +145,7 @@ body {
     display: grid;
     grid-template-columns: 1fr 3fr;
     gap: 1rem;
+    padding-bottom: 1rem;
 }
 
 /* ******************* Header ***************** */
@@ -290,7 +291,8 @@ body {
     padding-inline: 4rem;
 }
 
-.current-weather-container.dark-mode {
+.current-weather-container.dark-mode,
+.day-forecast-container.dark-mode {
     background: var(--clr-dark-bg);
     color: var(--clr-txt-dark);
 }
@@ -404,6 +406,60 @@ body {
 
 .extra-info-item .extra-info-name {
     text-align: center;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+/* ********************************************************* */
+.day-forecast-container {
+    max-width: 50rem;
+    width: 100%;
+    height: 25rem;
+    background: var(--clr-light-bg);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    color: var(--clr-text-light);
+    padding-block: 1rem;
+    padding-inline: 2rem;
+    text-align: center;
+}
+
+.day-forecast-container h2 {
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+.day-forecast {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.day-forecast .day-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.day-forecast .day-item img {
+    width: 3rem;
+    height: 3rem;
+}
+
+.day-forecast .day-item p {
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.day-forecast .day-item .date {
     font-size: 1rem;
     font-style: normal;
     font-weight: 500;

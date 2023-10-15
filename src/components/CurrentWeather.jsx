@@ -40,7 +40,7 @@ const CurrentWeather = (props) => {
   }
 
   return (
-    <div className={props.darkMode ? 'current-weather-container dark-mode' : 'current-weather-container'}>
+    <section className={props.darkMode ? 'current-weather-container dark-mode' : 'current-weather-container'}>
       <div className="grid-container">
         <div className="grid-item">
           <div className="temp-deg">
@@ -99,7 +99,7 @@ const CurrentWeather = (props) => {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   )
 }
 
