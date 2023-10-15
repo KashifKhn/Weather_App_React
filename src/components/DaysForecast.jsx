@@ -13,12 +13,14 @@ const DaysForecast = (props) => {
         const formattedDate = `${dayOfWeek}, ${day} ${month}`;
         return formattedDate;
     }
-    
+
     const DaysForecastItems = props.forecastWeatherData.map((item, index) => {
+        const mainTempInC = Math.round(item.main.temp);
+        const mainTempInF = Math.round((item.main.temp * 9 / 5) + 32);
         return (
             <div className="day-item" key={index}>
                 <img src={conditionIcon(item.weather[0].icon)} alt="icon of condition" />
-                <p className='temp'>{Math.round(item.main.temp)}°C</p>
+                <p className='temp'>{props.degUnit? `${mainTempInC}°C` : `${mainTempInF}°F`}</p>
                 <p className='date'>{formateDate(item.dt_txt)}</p>
             </div>
         )

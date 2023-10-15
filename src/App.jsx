@@ -9,6 +9,8 @@ const App = () => {
   const [darkMode, setDarkMode] = useState(JSON.parse(localStorage.getItem('darkMode')) || false);
   const [location, setLocation] = useState(null);
   const [error, setError] = useState(null);
+  const [degUnit, setDegUnit] = React.useState(true);
+
   useEffect(() => {
     handleGetCurrentLocation()
   }, []);
@@ -84,10 +86,13 @@ const App = () => {
           {currentWeatherData && <CurrentWeather
             darkMode={darkMode}
             currentWeatherData={currentWeatherData}
+            degUnit={degUnit}
+            setDegUnit={setDegUnit}
           />}
           {forecastWeatherData && <DaysForecast
             darkMode={darkMode}
             forecastWeatherData={forecastWeatherData}
+            degUnit={degUnit}
           />}
         </main>
       </div>

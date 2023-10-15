@@ -17,7 +17,6 @@ import { conditionIcon } from '../icon'
 
 const CurrentWeather = (props) => {
 
-  const [deg, setDeg] = React.useState(true);
   const { currentWeatherData } = props;
 
   function convertTimestamp(timestamp) {
@@ -36,7 +35,7 @@ const CurrentWeather = (props) => {
   const fellLikeInF = Math.round((currentWeatherData.main.feels_like * 9 / 5) + 32)
 
   const handleTempFormate = () => {
-    setDeg(oldDeg => !oldDeg)
+    props.setDegUnit(oldDegUint => !oldDegUint)
   }
 
   return (
@@ -44,8 +43,8 @@ const CurrentWeather = (props) => {
       <div className="grid-container">
         <div className="grid-item">
           <div className="temp-deg">
-            <h3 onClick={handleTempFormate}>{deg? `${mainTempInC}°C` : `${mainTempInF}°F`}</h3>
-            <p className="fell-like">Feels like: <span>{deg? `${fellLikeInC}°C` : `${fellLikeInF}°F`}</span></p>
+            <h3 onClick={handleTempFormate}>{props.degUnit? `${mainTempInC}°C` : `${mainTempInF}°F`}</h3>
+            <p className="fell-like">Feels like: <span>{props.degUnit? `${fellLikeInC}°C` : `${fellLikeInF}°F`}</span></p>
           </div>
           <div className="sun-time-container">
             <div className="sun-rise">
