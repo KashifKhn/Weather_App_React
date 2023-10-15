@@ -7,6 +7,7 @@ import { fetchCurrentWeather } from './api';
 const App = () => {
   const [darkMode, setDarkMode] = useState(JSON.parse(localStorage.getItem('darkMode')) || false);
   const [location, setLocation] = useState(null);
+  const [error, setError] = useState(null);
   useEffect(() => {
     handleGetCurrentLocation()
   }, []);
@@ -19,22 +20,26 @@ const App = () => {
 
   function handleGetCurrentLocation() {
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition((position) => {
-            const lat = position.coords.latitude;
-            const lon = position.coords.longitude;
-            setLocation({lat, lon})
-        })
+      navigator.geolocation.getCurrentPosition((position) => {
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+        setLocation({ lat, lon })
+      })
     } else {
-        alert('Geolocation is not supported by this browser.')
+      alert('Geolocation is not supported by this browser.')
     }
-
-
-}
+  }
 
   useEffect(() => {
     const callAPI = async () => {
-      const data = await fetchCurrentWeather(location)
-      setCurrentWeatherData(data)
+      try {
+        const data = await fetchCurrentWeather(location)
+        setCurrentWeatherData(data)
+      }
+      catch (error) {
+        setError(error)
+      }
+
     }
     callAPI()
   }, [location])
@@ -49,7 +54,7 @@ const App = () => {
   }
   console.log(currentWeatherData);
 
-  
+
   return (
     <div className={darkMode ? "App dark-mode" : "App"}>
       <div className="container app-container">

@@ -319,6 +319,7 @@ body {
     font-style: normal;
     font-weight: 700;
     line-height: normal;
+    cursor: pointer;
 }
 
 .current-weather-container.dark-mode .temp-deg h3 {

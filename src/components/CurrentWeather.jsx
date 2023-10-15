@@ -16,6 +16,8 @@ import pressureIconLight from '../assets/images/pressure-icon-light.png'
 import { conditionIcon } from '../icon'
 
 const CurrentWeather = (props) => {
+
+  const [deg, setDeg] = React.useState(true);
   const { currentWeatherData } = props;
 
   function convertTimestamp(timestamp) {
@@ -27,13 +29,23 @@ const CurrentWeather = (props) => {
     return `${formattedHours}:${formattedMinutes}`;
   }
 
+  const mainTempInC = Math.round(currentWeatherData.main.temp);
+  const mainTempInF = Math.round((currentWeatherData.main.temp * 9 / 5) + 32);
+
+  const fellLikeInC = Math.round(currentWeatherData.main.feels_like)
+  const fellLikeInF = Math.round((currentWeatherData.main.feels_like * 9 / 5) + 32)
+
+  const handleTempFormate = () => {
+    setDeg(oldDeg => !oldDeg)
+  }
+
   return (
     <div className={props.darkMode ? 'current-weather-container dark-mode' : 'current-weather-container'}>
       <div className="grid-container">
         <div className="grid-item">
           <div className="temp-deg">
-            <h3>{Math.round(currentWeatherData.main.temp)}°C</h3>
-            <p className="fell-like">Feels like: <span>{Math.round(currentWeatherData.main.feels_like)}°C</span></p>
+            <h3 onClick={handleTempFormate}>{deg? `${mainTempInC}°C` : `${mainTempInF}°F`}</h3>
+            <p className="fell-like">Feels like: <span>{deg? `${fellLikeInC}°C` : `${fellLikeInF}°F`}</span></p>
           </div>
           <div className="sun-time-container">
             <div className="sun-rise">

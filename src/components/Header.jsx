@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import currentLocationIcon from '../assets/images/current-location-icon.png'
 import { FaSearch } from 'react-icons/fa'
 import { styled } from '@mui/material/styles';
@@ -9,7 +9,8 @@ import { fetchCity } from '../api';
 
 const Header = (props) => {
 
-    const [search, setSearch] = React.useState(null)
+    const [search, setSearch] = useState(null)
+    const [error, setError] = useState(null)
     const { darkMode, handleDarkMode } = props;
     console.log("Search: ", search)
 
@@ -21,12 +22,16 @@ const Header = (props) => {
     }
 
     const loadOptions = async (inputValue) => {
-        const data = await fetchCity(inputValue);
-        return {
-            options: data.data.map((city) => ({
-                value: `${city.latitude} ${city.longitude}`,
-                label: `${city.name}, ${city.countryCode}`,
-            }))
+        try {
+            const data = await fetchCity(inputValue);
+            return {
+                options: data.data.map((city) => ({
+                    value: `${city.latitude} ${city.longitude}`,
+                    label: `${city.name}, ${city.countryCode}`,
+                }))
+            }
+        } catch (error) {
+            setError(error)
         }
     }
 
