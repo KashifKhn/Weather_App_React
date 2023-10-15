@@ -440,9 +440,11 @@ body {
 }
 
 .day-forecast .day-item {
-    display: flex;
+    display: grid;
+    grid-template-columns: .75fr .75fr 2fr;
+    gap: 1rem;
     align-items: center;
-    justify-content: space-between;
+    text-align: left;
     width: 100%;
     margin-top: 1rem;
 }
@@ -450,6 +452,7 @@ body {
 .day-forecast .day-item img {
     width: 3rem;
     height: 3rem;
+
 }
 
 .day-forecast .day-item p {
