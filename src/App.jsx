@@ -72,37 +72,34 @@ const App = () => {
 
   return (
     <div className={darkMode ? "App dark-mode" : "App"}>
-      <div className="container app-container">
-        <Header
+      <Header
+        darkMode={darkMode}
+        handleDarkMode={handleDarkMode}
+        onSearchChange={HandleOnSearchChange}
+        handleGetCurrentLocation={handleGetCurrentLocation}
+      />
+      <main className='main'>
+        {currentWeatherData && <TimeDate
           darkMode={darkMode}
-          handleDarkMode={handleDarkMode}
-          onSearchChange={HandleOnSearchChange}
-          handleGetCurrentLocation={handleGetCurrentLocation}
-        />
-        <main className='main'>
-          {currentWeatherData && <TimeDate
-            darkMode={darkMode}
-            currentWeatherData={currentWeatherData}
-          />}
-          {currentWeatherData && <CurrentWeather
-            darkMode={darkMode}
-            currentWeatherData={currentWeatherData}
-            degUnit={degUnit}
-            setDegUnit={setDegUnit}
-          />}
-          {forecastWeatherData && <DaysForecast
-            darkMode={darkMode}
-            forecastWeatherData={forecastWeatherData}
-            degUnit={degUnit}
-          />}
-          {hourlyWeatherData && <HourlyForecast
-            darkMode={darkMode}
-            hourlyWeatherData={hourlyWeatherData}
-            degUnit={degUnit}
-          />}
-        </main>
-      </div>
-      {/* <div style={{ minHeight: "100vh" }}></div> */}
+          currentWeatherData={currentWeatherData}
+        />}
+        {currentWeatherData && <CurrentWeather
+          darkMode={darkMode}
+          currentWeatherData={currentWeatherData}
+          degUnit={degUnit}
+          setDegUnit={setDegUnit}
+        />}
+        {forecastWeatherData && <DaysForecast
+          darkMode={darkMode}
+          forecastWeatherData={forecastWeatherData}
+          degUnit={degUnit}
+        />}
+        {hourlyWeatherData && <HourlyForecast
+          darkMode={darkMode}
+          hourlyWeatherData={hourlyWeatherData}
+          degUnit={degUnit}
+        />}
+      </main>
     </div>
   )
 }

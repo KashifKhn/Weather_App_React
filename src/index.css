@@ -111,27 +111,21 @@ body {
     font-family: 'Poppins', sans-serif !important;
 }
 
-.container {
-    max-width: 1200px;
-    width: 100%;
-    margin: 0 auto;
-    padding: 0 1rem;
-}
-
 /* ************** App ****************** */
 
-.app-container {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
 
 .App {
     background: rgb(255, 255, 255);
     background: linear-gradient(93deg, rgba(255, 255, 255, 1) 13%, rgba(134, 134, 134, 1) 75%, rgba(41, 41, 41, 1) 99%);
     min-height: 100vh;
+    height: auto;
     width: 100%;
     overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    margin-inline: auto;
+    align-items: center;
+    padding-inline: 1rem;
 }
 
 .App.dark-mode {
@@ -144,13 +138,16 @@ body {
     grid-template-columns: 1fr 3fr;
     gap: 1rem;
     padding-bottom: 1rem;
+    place-items: center;
+    width: 100%;   
+    max-width: 1200px;       
 }
 
 /* ******************* Header ***************** */
 
 /* Dark Mode  */
 /* Dark Mode  */
-.search-input.dark-mode ,
+.search-input.dark-mode,
 .time-container.dark-mode,
 .current-weather-container.dark-mode,
 .day-forecast-container.dark-mode,
@@ -161,7 +158,8 @@ body {
 
 
 .header {
-    margin-top: 1rem;
+    margin-block: 1rem;
+    width: 100%; 
 }
 
 .header .nav-bar {
@@ -242,6 +240,8 @@ body {
 
 /* **************** Time Components ********** */
 .time-container {
+    max-width: 50rem;
+    width: 100%;
     background: var(--clr-light-bg);
     border-radius: 20px;
     box-shadow: var(--shadow);
@@ -260,14 +260,6 @@ body {
     font-weight: 700;
 }
 
-.time-container .date-time {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: -1rem;
-}
-
 .time-container .time {
     font-size: 6rem;
     font-weight: 700;
@@ -280,7 +272,7 @@ body {
 .current-weather-container {
     max-width: 50rem;
     width: 100%;
-    height: 20rem;
+    height: auto;
     background: var(--clr-light-bg);
     border-radius: 20px;
     box-shadow: var(--shadow);
@@ -370,6 +362,7 @@ body {
 .extra-info {
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 .extra-info-div {
@@ -386,6 +379,11 @@ body {
     text-align: center;
     flex-direction: column;
     gap: .25rem;
+}
+
+.extra-info-item img {
+    width: 3rem;
+    height: 3rem;
 }
 
 .extra-info-item .extra-info-qun {
@@ -408,7 +406,7 @@ body {
 .day-forecast-container {
     max-width: 50rem;
     width: 100%;
-    height: 25rem;
+    height: auto;
     background: var(--clr-light-bg);
     border-radius: 20px;
     box-shadow: var(--shadow);
@@ -468,7 +466,7 @@ body {
 .hourly-weather-container {
     max-width: 50rem;
     width: 100%;
-    height: 25rem;
+    height: auto;
     background: var(--clr-light-bg);
     border-radius: 20px;
     box-shadow: var(--shadow);
@@ -487,9 +485,10 @@ body {
 
 .hourly-items {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(5 , 1fr);
     gap: 1rem;
     align-items: center;
+    justify-content: center;
     margin-top: 1rem;
 }
 
@@ -502,8 +501,8 @@ body {
     border-radius: 2.5rem;
     width: 7rem;
     height: 16.875rem;
-    background: rgb(250,166,77);
-    background: linear-gradient(93deg, rgba(250,166,77,1) 0%, rgba(252,197,138,1) 29%, rgba(252,197,138,1) 82%);
+    background: rgb(250, 166, 77);
+    background: linear-gradient(93deg, rgba(250, 166, 77, 1) 0%, rgba(252, 197, 138, 1) 29%, rgba(252, 197, 138, 1) 82%);
 }
 
 .hourly-item.dark-mode {
@@ -531,3 +530,58 @@ body {
     width: 2rem;
     height: 2rem;
 }
+
+@media(max-width: 1120px) {
+    .header .nav-bar {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .search-container {
+        order: -1;
+        width: 100%;
+    }
+
+    .main {
+        grid-template-columns: 1fr;
+        align-items: center;
+    }
+
+    .time-container {
+        width: 100%;
+        flex-wrap: wrap;
+        padding-block: 5rem;
+        padding-inline: .5rem;
+    }
+
+    .current-weather-container {
+        height: auto;
+    }
+
+    .current-weather-container .grid-container {
+        grid-template-columns: 1fr;
+    }
+    .extra-info-div {
+        max-width: 20rem;
+        width: 100%;
+    }
+    .weather-icon {
+        order: -1;
+    }
+
+    .hourly-items {
+        display: grid;
+        grid-template-columns: repeat(2 , 1fr);
+        gap: 1rem;
+        place-items: center;
+        margin-top: 1rem;
+    }
+
+}
+
+
+
+
+

@@ -8,13 +8,11 @@ const TimeDate = (props) => {
     const formattedTime = dateTime.toFormat('HH:mm');
     return formattedTime;
   }
-   return (
+  return (
     <section className={props.darkMode ? 'time-container dark-mode' : 'time-container'}>
       <h2 className="location">{props.currentWeatherData.name} {props.currentWeatherData.sys.country}</h2>
-      <div className="date-time">
-        <h2 className='time'>{convertTimestamp(props.currentWeatherData.dt,props.currentWeatherData.timezone )}</h2>
-        <p className='date'>{ }</p>
-      </div>
+      <h2 className='time'>{convertTimestamp(props.currentWeatherData.dt, props.currentWeatherData.timezone)}</h2>
+      <p className='date'>{ }</p>
     </section>
   )
 }
