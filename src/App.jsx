@@ -3,6 +3,7 @@ import Header from './components/Header'
 import TimeDate from './components/TimeDate';
 import CurrentWeather from './components/CurrentWeather';
 import DaysForecast from './components/DaysForecast';
+import HourlyForecast from './components/HourlyForecast';
 import { fetchCurrentWeather, fetchForecastWeather } from './api';
 
 const App = () => {
@@ -17,6 +18,7 @@ const App = () => {
 
   const [currentWeatherData, setCurrentWeatherData] = useState(null);
   const [forecastWeatherData, setForecastWeatherData] = useState(null);
+  const [hourlyWeatherData, setHourlyWeatherData] = useState(null);
   const handleDarkMode = () => {
     setDarkMode(oldDarkMode => !oldDarkMode);
     localStorage.setItem('darkMode', !darkMode);
@@ -41,13 +43,11 @@ const App = () => {
         setCurrentWeatherData(currentData)
 
         const forecastData = await fetchForecastWeather(location)
-        console.log(forecastData.list)
-
         const indicesToSelect = [8, 16, 24, 32, 39];
-        // i want 
-        const filteredForecastData = forecastData.list.filter((item, index) => indicesToSelect.includes(index));
-        setForecastWeatherData(filteredForecastData);
-        console.log(filteredForecastData);
+        setForecastWeatherData(forecastData.list.filter((item, index) => indicesToSelect.includes(index)));
+
+        const hourlyData = await fetchForecastWeather(location);
+        setHourlyWeatherData(hourlyData.list.splice(0, 5));
 
       }
       catch (error) {
@@ -57,6 +57,7 @@ const App = () => {
     getData()
 
   }, [location])
+  console.log(hourlyWeatherData)
 
   error && console.log(error)
 
@@ -94,9 +95,14 @@ const App = () => {
             forecastWeatherData={forecastWeatherData}
             degUnit={degUnit}
           />}
+          {hourlyWeatherData && <HourlyForecast
+            darkMode={darkMode}
+            hourlyWeatherData={hourlyWeatherData}
+            degUnit={degUnit}
+          />}
         </main>
       </div>
-      <div style={{ minHeight: "100vh" }}></div>
+      {/* <div style={{ minHeight: "100vh" }}></div> */}
     </div>
   )
 }
