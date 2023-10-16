@@ -10,7 +10,7 @@ const HourlyForecast = (props) => {
     const mainTempInC = Math.round(item.main.temp);
     const mainTempInF = Math.round((item.main.temp * 9 / 5) + 32);
     return (
-      <div key={item.dt_txt} className="hourly-item">
+      <div key={item.dt_txt} className={props.darkMode ? 'hourly-item dark-mode' : 'hourly-item'}>
         <p className="time">{item.dt_txt.split(' ')[1].slice(0, 5)}</p>
         <img className='temp-icon' src={conditionIcon(item.weather[0].icon)} alt="" />
         <p className="temp">{props.degUnit ? `${mainTempInC}°C` : `${mainTempInF}°F`}</p>

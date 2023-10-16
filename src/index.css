@@ -506,15 +506,20 @@ body {
     justify-content: center;
     gap: .5rem;
     border-radius: 2.5rem;
-    background: #373636;
     width: 7rem;
     height: 16.875rem;
+    background: rgb(250,166,77);
+    background: linear-gradient(93deg, rgba(250,166,77,1) 0%, rgba(252,197,138,1) 29%, rgba(252,197,138,1) 82%);
+}
+
+.hourly-item.dark-mode {
+    background: #373636;
 }
 
 .hourly-item p {
     font-size: 1rem;
     font-style: normal;
-    font-weight: 500;
+    font-weight: 700;
     line-height: normal;
 }
 
