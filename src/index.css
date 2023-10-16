@@ -123,7 +123,6 @@ body {
 .app-container {
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
     gap: 1rem;
 }
 
@@ -132,8 +131,7 @@ body {
     background: linear-gradient(93deg, rgba(255, 255, 255, 1) 13%, rgba(134, 134, 134, 1) 75%, rgba(41, 41, 41, 1) 99%);
     min-height: 100vh;
     width: 100%;
-    overflow: hidden;
-    /* #443D64, #6582C600 */
+    overflow-x: hidden;
 }
 
 .App.dark-mode {
@@ -149,6 +147,18 @@ body {
 }
 
 /* ******************* Header ***************** */
+
+/* Dark Mode  */
+/* Dark Mode  */
+.search-input.dark-mode ,
+.time-container.dark-mode,
+.current-weather-container.dark-mode,
+.day-forecast-container.dark-mode,
+.hourly-weather-container.dark-mode {
+    background: var(--clr-dark-bg);
+    color: var(--clr-txt-dark);
+}
+
 
 .header {
     margin-top: 1rem;
@@ -183,7 +193,6 @@ body {
     color: var(--clr-text-light);
     outline: none;
     box-shadow: 0px 4px 40px 0px rgba(0, 0, 0, 0.25);
-    /* text-indent: 2rem; */
 }
 
 .search-input::placeholder {
@@ -191,11 +200,6 @@ body {
     color: var(--clr-text-light)
 }
 
-.search-input.dark-mode {
-    background: var(--bg-dark);
-    color: var(--clr-txt-dark);
-    border: 0;
-}
 
 .search-input.dark-mode::placeholder {
     color: #ffffff99;
@@ -235,19 +239,9 @@ body {
     box-shadow: inset 0px 2px 2px 1px #2c7a08f5;
 }
 
-/* Dark Mode  */
-.time-container.dark-mode,
-.current-weather-container.dark-mode,
-.day-forecast-container.dark-mode,
-.hourly-weather-container.dark-mode {
-    background: var(--clr-dark-bg);
-    color: var(--clr-txt-dark);
-}
 
+/* **************** Time Components ********** */
 .time-container {
-    max-width: 31rem;
-    width: 100%;
-    height: 20rem;
     background: var(--clr-light-bg);
     border-radius: 20px;
     box-shadow: var(--shadow);
