@@ -11,6 +11,8 @@ const App = () => {
   const [location, setLocation] = useState(null);
   const [error, setError] = useState(null);
   const [degUnit, setDegUnit] = React.useState(true);
+  const [loading, setLoading] = useState(false);
+
 
   useEffect(() => {
     handleGetCurrentLocation()
@@ -38,6 +40,7 @@ const App = () => {
 
   useEffect(() => {
     const getData = async () => {
+      setLoading(true)
       try {
         const currentData = await fetchCurrentWeather(location)
         setCurrentWeatherData(currentData)
@@ -49,17 +52,17 @@ const App = () => {
         const hourlyData = await fetchForecastWeather(location);
         setHourlyWeatherData(hourlyData.list.splice(0, 5));
 
-      }
-      catch (error) {
+      } catch (error) {
         setError(error)
+      } finally {
+        setLoading(false)
       }
     }
     getData()
 
   }, [location])
-  console.log(hourlyWeatherData)
 
-  error && console.log(error)
+  console.log(error)
 
   const HandleOnSearchChange = (searchData) => {
     setLocation(
@@ -70,6 +73,7 @@ const App = () => {
     )
   }
 
+
   return (
     <div className={darkMode ? "App dark-mode" : "App"}>
       <Header
@@ -78,28 +82,30 @@ const App = () => {
         onSearchChange={HandleOnSearchChange}
         handleGetCurrentLocation={handleGetCurrentLocation}
       />
-      <main className='main'>
-        {currentWeatherData && <TimeDate
-          darkMode={darkMode}
-          currentWeatherData={currentWeatherData}
-        />}
-        {currentWeatherData && <CurrentWeather
-          darkMode={darkMode}
-          currentWeatherData={currentWeatherData}
-          degUnit={degUnit}
-          setDegUnit={setDegUnit}
-        />}
-        {forecastWeatherData && <DaysForecast
-          darkMode={darkMode}
-          forecastWeatherData={forecastWeatherData}
-          degUnit={degUnit}
-        />}
-        {hourlyWeatherData && <HourlyForecast
-          darkMode={darkMode}
-          hourlyWeatherData={hourlyWeatherData}
-          degUnit={degUnit}
-        />}
-      </main>
+      {loading ? <h3 className="loading">Loading...</h3> :
+          <main className='main'>
+            {currentWeatherData && <TimeDate
+              darkMode={darkMode}
+              currentWeatherData={currentWeatherData}
+            />}
+            {currentWeatherData && <CurrentWeather
+              darkMode={darkMode}
+              currentWeatherData={currentWeatherData}
+              degUnit={degUnit}
+              setDegUnit={setDegUnit}
+            />}
+            {forecastWeatherData && <DaysForecast
+              darkMode={darkMode}
+              forecastWeatherData={forecastWeatherData}
+              degUnit={degUnit}
+            />}
+            {hourlyWeatherData && <HourlyForecast
+              darkMode={darkMode}
+              hourlyWeatherData={hourlyWeatherData}
+              degUnit={degUnit}
+            />}
+          </main>
+      }
     </div>
   )
 }

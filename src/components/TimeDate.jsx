@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { DateTime } from 'luxon';
 
 const TimeDate = (props) => {
 
@@ -22,7 +21,7 @@ const TimeDate = (props) => {
     return `${hours}:${minutes}`;
   }
 
-  function formateDate() {
+  function getCurrentDate() {
     const date = new Date();
     const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -37,7 +36,7 @@ const TimeDate = (props) => {
     <section className={props.darkMode ? 'time-container dark-mode' : 'time-container'}>
       <h2 className="location">{props.currentWeatherData.name} {props.currentWeatherData.sys.country}</h2>
       <h2 className='time'>{currentTime}</h2>
-      <p className='date'>{formateDate()}</p>
+      <p className='date'>{getCurrentDate()}</p>
     </section>
   )
 }
