@@ -1,18 +1,9 @@
 import React from 'react'
 import { conditionIcon } from '../icon'
+import {formateDate} from '../utils/helper'
+
 
 const DaysForecast = (props) => {
-
-    function formateDate(originalDate) {
-        const date = new Date(originalDate);
-        const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-        const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-        const dayOfWeek = daysOfWeek[date.getUTCDay()];
-        const day = date.getUTCDate();
-        const month = months[date.getUTCMonth()];
-        const formattedDate = `${dayOfWeek}, ${day} ${month}`;
-        return formattedDate;
-    }
 
     const DaysForecastItems = props.forecastWeatherData.map((item, index) => {
         const mainTempInC = Math.round(item.main.temp);

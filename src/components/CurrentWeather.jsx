@@ -14,19 +14,12 @@ import humidityIconLight from '../assets/images/humidity-icon-light.png'
 import pressureIconLight from '../assets/images/pressure-icon-light.png'
 
 import { conditionIcon } from '../icon'
+import {convertTimestamp} from '../utils/helper'
+
 
 const CurrentWeather = (props) => {
 
   const { currentWeatherData } = props;
-
-  function convertTimestamp(timestamp) {
-    const date = new Date(timestamp * 1000);
-    const hours = date.getHours();
-    const minutes = date.getMinutes();
-    const formattedHours = hours < 10 ? `0${hours}` : hours;
-    const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
-    return `${formattedHours}:${formattedMinutes}`;
-  }
 
   const mainTempInC = Math.round(currentWeatherData.main.temp);
   const mainTempInF = Math.round((currentWeatherData.main.temp * 9 / 5) + 32);

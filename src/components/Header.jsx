@@ -82,7 +82,6 @@ const Header = (props) => {
     const iconStyle = {
         color: darkMode ? '#ffffff99' : '#292929',
         fontSize: '.85rem',
-
     }
 
     const inputStyle = {

@@ -62,8 +62,6 @@ const App = () => {
 
   }, [location])
 
-  console.log(error)
-
   const HandleOnSearchChange = (searchData) => {
     setLocation(
       {

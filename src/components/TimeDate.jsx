@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import {getCurrentDate, getCurrentTime} from '../utils/helper'
 
 const TimeDate = (props) => {
 
@@ -14,24 +15,6 @@ const TimeDate = (props) => {
     };
   }, []);
 
-  function getCurrentTime() {
-    const now = new Date();
-    const hours = String(now.getHours()).padStart(2, '0');
-    const minutes = String(now.getMinutes()).padStart(2, '0');
-    return `${hours}:${minutes}`;
-  }
-
-  function getCurrentDate() {
-    const date = new Date();
-    const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-    const dayOfWeek = daysOfWeek[date.getUTCDay()];
-    const day = date.getUTCDate();
-    const month = months[date.getUTCMonth()];
-    const formattedDate = `${dayOfWeek}, ${day} ${month}`;
-    return formattedDate;
-  }
-  
   return (
     <section className={props.darkMode ? 'time-container dark-mode' : 'time-container'}>
       <h2 className="location">{props.currentWeatherData.name} {props.currentWeatherData.sys.country}</h2>

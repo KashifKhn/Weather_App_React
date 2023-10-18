@@ -2,8 +2,6 @@ import React from 'react'
 import { conditionIcon } from '../icon'
 import windDirection from '../assets/images/wind-navigation.png'
 
-
-
 const HourlyForecast = (props) => {
 
   const hourlyItemElements = props.hourlyWeatherData.map((item) => {

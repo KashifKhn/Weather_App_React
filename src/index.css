@@ -242,6 +242,7 @@ body {
 .time-container {
     max-width: 50rem;
     width: 100%;
+    height: auto;
     background: var(--clr-light-bg);
     border-radius: 20px;
     box-shadow: var(--shadow);
