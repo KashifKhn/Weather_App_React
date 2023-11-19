@@ -13,7 +13,7 @@ import uvIconLight from '../assets/images/uv-icon-light.png'
 import humidityIconLight from '../assets/images/humidity-icon-light.png'
 import pressureIconLight from '../assets/images/pressure-icon-light.png'
 
-import { conditionIcon } from '../icon'
+import { conditionIcon } from '../utils/icon'
 import {convertTimestamp} from '../utils/helper'
 
 

@@ -5,7 +5,7 @@ import { styled } from '@mui/material/styles';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 import { AsyncPaginate } from 'react-select-async-paginate';
-import { fetchCity } from '../api';
+import { fetchCity } from '../utils/api';
 
 const Header = (props) => {
 

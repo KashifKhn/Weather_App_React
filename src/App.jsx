@@ -4,7 +4,7 @@ import TimeDate from './components/TimeDate';
 import CurrentWeather from './components/CurrentWeather';
 import DaysForecast from './components/DaysForecast';
 import HourlyForecast from './components/HourlyForecast';
-import { fetchCurrentWeather, fetchForecastWeather } from './api';
+import { fetchCurrentWeather, fetchForecastWeather } from './utils/api';
 
 const App = () => {
   const [darkMode, setDarkMode] = useState(JSON.parse(localStorage.getItem('darkMode')) || false);

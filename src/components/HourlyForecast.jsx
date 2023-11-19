@@ -1,5 +1,5 @@
 import React from 'react'
-import { conditionIcon } from '../icon'
+import { conditionIcon } from '../utils/icon'
 import windDirection from '../assets/images/wind-navigation.png'
 
 const HourlyForecast = (props) => {
